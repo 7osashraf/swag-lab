@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-09-24T00:17:20 EEST" name="Default suite" finished-at="2024-09-24T00:17:25 EEST" duration-ms="5590">
+    <groups>
+    </groups>
+    <test started-at="2024-09-24T00:17:20 EEST" name="Default test" finished-at="2024-09-24T00:17:25 EEST" duration-ms="5590">
+      <class name="test_ItemPage.itemPageCompTest">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:test_ItemPage.itemPageCompTest@7ba8c737]" started-at="2024-09-24T00:17:20 EEST" name="openBrowser" finished-at="2024-09-24T00:17:22 EEST" duration-ms="2570" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="checkBackToProductsBtnFunctionallity()[pri:3, instance:test_ItemPage.itemPageCompTest@7ba8c737]" started-at="2024-09-24T00:17:22 EEST" name="checkBackToProductsBtnFunctionallity" finished-at="2024-09-24T00:17:23 EEST" duration-ms="772" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- checkBackToProductsBtnFunctionallity -->
+        <test-method is-config="true" signature="closeBrowser(org.testng.ITestResult)[pri:0, instance:test_ItemPage.itemPageCompTest@7ba8c737]" started-at="2024-09-24T00:17:23 EEST" name="closeBrowser" finished-at="2024-09-24T00:17:25 EEST" duration-ms="2189" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=checkBackToProductsBtnFunctionallity status=SUCCESS method=itemPageCompTest.checkBackToProductsBtnFunctionallity()[pri:3, instance:test_ItemPage.itemPageCompTest@7ba8c737] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- test_ItemPage.itemPageCompTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
