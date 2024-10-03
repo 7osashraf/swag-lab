@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="test_ItemPage.itemPageCompTest">
+      <class name="facebook.FacebookLoginTest">
         <methods>
-          <include name="openBrowser"/>
-          <include name="closeBrowser"/>
-          <include name="checkCartPageOpened"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="testFacebookLogin"/>
         </methods>
-      </class> <!-- test_ItemPage.itemPageCompTest -->
+      </class> <!-- facebook.FacebookLoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,22 +1,37 @@
 package Utility;
 
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebElement;
 
+import com.google.gson.Gson;
+import com.jayway.jsonpath.JsonPath;
+
+
 import comp_LoginPage.LoginPageWebElement;
 
 public class DataUtils {
+	
+	public final static String CONFIG_PATH = "./Resources/";
+
+	public static String Login_Data_Jason_Path = "./Resources/";
+
+	public String userName;
+
+	public String Password;
+	
 	public static String getExcelData(String excelFilePath, String excelFilename, String sheetName, int rowNum,
 			int colNum) {
 		XSSFWorkbook workbook;
 		XSSFSheet sheet;
-		String cellData;
+		String cellData = null;
 
 		try {
 			// Load the Excel file
@@ -26,7 +41,35 @@ public class DataUtils {
 			sheet = workbook.getSheet(sheetName);
 
 			// Get the data from the specified cell
-			cellData = sheet.getRow(rowNum).getCell(colNum).getStringCellValue();
+			//cellData = sheet.getRow(rowNum).getCell(colNum).getStringCellValue();
+			 Row row = sheet.getRow(rowNum);
+		        if (row != null) {
+		            
+		            Cell cell = row.getCell(colNum);
+		            if (cell != null) {
+		                
+		                switch (cell.getCellType()) {
+		                    case STRING:
+		                        cellData = cell.getStringCellValue();
+		                        break;
+		                    case NUMERIC:
+		                        cellData = String.valueOf(cell.getNumericCellValue());
+		                        break;
+		                    case BOOLEAN:
+		                        cellData = String.valueOf(cell.getBooleanCellValue());
+		                        break;
+		                    case FORMULA:
+		                        cellData = cell.getCellFormula();
+		                        break;
+		                    default:
+		                        cellData = "";
+		                }
+		            } else {
+		                System.out.println("Cell at row " + rowNum + " and column " + colNum + " is null.");
+		            }
+		        } else {
+		            System.out.println("Row " + rowNum + " is null.");
+		        }
 
 			workbook.close();
 			return cellData;
@@ -82,6 +125,20 @@ public class DataUtils {
 		}
  
 		return null;
+	}
+	
+	
+	public static String getJsonValue(String jsonFilename, String field) {
+	    try {
+	    	// reading the json file
+	        FileReader reader = new FileReader(Login_Data_Jason_Path + jsonFilename + ".json");
+	        // pasrsing the json file content into a generic object
+	        Object jsonData = new Gson().fromJson(reader, Object.class);
+	        // using JsonPath to extract the value of the specifed field from the JSON object
+	        return JsonPath.read(jsonData, "$." + field);
+	    } catch (Exception e) {
+	        return "";
+	    }
 	}
 
 }

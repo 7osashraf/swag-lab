@@ -13,8 +13,9 @@ public class LoginPageCompTest extends LoginPageComp{
 
 
 	@BeforeMethod(alwaysRun = true)
-	public void openBrowser() throws Exception {
-		SetupTheDriver();
+	public void openBrowser(ITestResult result) throws Exception {
+		//SetupTheDriver();
+		setup(result);
 	}
 
 	@AfterMethod(alwaysRun = true)
@@ -81,7 +82,14 @@ public class LoginPageCompTest extends LoginPageComp{
 	}
 
 
+	@Test
+	public void loginWithJSON() throws IOException, InterruptedException{
+		CheckLoginWithValidDataByJason();
+	}
 
-
+	@Test
+	public void loginoginWithJavaFaker() throws IOException, InterruptedException{
+		CheckLoginWithJavaFaker();
+	}
 
 }

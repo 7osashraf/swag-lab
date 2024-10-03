@@ -54,4 +54,20 @@ public class CheckoutPageCompTest extends CheckoutPageComp{
         proceedToCheckoutOverview();
     }
 
+    @Test(priority = 2)
+    public void checkProceedToCheckoutOverviewUsingExcel() throws InterruptedException {
+        LoginPageComp loginPageComp = new LoginPageComp();
+        loginPageComp.testIfSuccessfulLogin();
+        
+        HomePageComp homePageComp = new HomePageComp();
+	    homePageComp.addAllItemToCart();
+	    homePageComp.clickOnCartIcon();
+        
+        CartPageComp cartPageComp = new CartPageComp();
+        cartPageComp.proceedToCheckout();
+        
+        enterCheckoutInformationFromExcel();
+        Thread.sleep(1000);
+        proceedToCheckoutOverview();
+    }
 }

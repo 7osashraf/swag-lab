@@ -71,7 +71,7 @@ public class FooterComp extends FooterWebElement{
 			if (!windowHandle.equals(mainWindow)) {
 				driver.switchTo().window(windowHandle); // Switch to the new window
 				String currentUrl = driver.getCurrentUrl();
-				logger.debug("Current URL: " + currentUrl);
+				
 
 				// Verify the current URL matches the expected URL
 				checkIfEqual(currentUrl, expectedUrl);

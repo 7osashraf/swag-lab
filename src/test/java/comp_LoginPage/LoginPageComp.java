@@ -10,8 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import com.github.javafaker.Faker;
+
 import Utility.DataUtils;
 import Utility.ExcelUtils;
+import comp_HomePage.HomePageComp;
 
 public class LoginPageComp extends LoginPageWebElement {
 
@@ -431,6 +434,59 @@ public class LoginPageComp extends LoginPageWebElement {
 
 		UserNameField.sendKeys(getConfigValue("config", "UserName"));
 		PasswordField.sendKeys(getConfigValue("config", "Password"));
+	}
+	
+	public void CheckLoginWithValidDataByJason() throws IOException, InterruptedException {
+
+	    logger.debug("Check Login With Valid Data By Json");
+
+	    WebElement UserNameField = getUserNameField();
+	    checkIfNotNull(UserNameField, "User Name Field");
+
+	    UserNameField.sendKeys(DataUtils.getJsonValue("LoginData", "UserLogin.UserName"));
+	    logger.info("UserName: " + UserNameField.getAttribute("value"));
+
+	    WebElement PasswordField = getPassField();
+
+	    checkIfNotNull(PasswordField, "Password Field");
+
+	    PasswordField.sendKeys(DataUtils.getJsonValue("LoginData", "UserLogin.Password"));
+	    logger.info("Password: " + PasswordField.getAttribute("value"));
+
+	    WebElement LoginButton = getLoginBtnField();
+
+	    checkIfNotNull(LoginButton, "Login Button");
+	    explicitlyWaitForClickability(LoginButton);
+
+	    LoginButton.click();
+
+	    HomePageComp homePageComp = new HomePageComp();
+	    homePageComp.checkIfHomePageOpened();
+	}
+	
+	public void CheckLoginWithJavaFaker() {
+	    logger.debug("Checking Login With Java Faker");
+
+	    Faker faker = new Faker();
+
+	    String randomUserName = faker.name().username();
+	    String randomPassword = faker.internet().password();
+
+	    WebElement UserNameField = getUserNameField();
+	    checkIfNotNull(UserNameField, "User Name Field");
+	    UserNameField.sendKeys(randomUserName);
+	    logger.info("UserName: " + randomUserName);
+
+	    WebElement PasswordField = getPassField();
+	    checkIfNotNull(PasswordField, "Password Field");
+	    PasswordField.sendKeys(randomPassword);
+	    logger.info("Password: " + randomPassword);
+
+	    WebElement LoginButton = getLoginBtnField();
+	    explicitlyWaitForClickability(LoginButton);
+	    LoginButton.click();
+
+	    checkIfEqual(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
 	}
 
 }

@@ -15,6 +15,33 @@
   </properties>
 
   <dependencies>
+  <dependency>
+    <groupId>org.jsoup</groupId>
+    <artifactId>jsoup</artifactId>
+    <version>1.14.3</version>
+</dependency>
+
+  
+  <dependency>
+    <groupId>org.jsoup</groupId>
+    <artifactId>jsoup</artifactId>
+    <version>1.15.4</version> <!-- You can use the latest version available -->
+</dependency>
+
+  
+  <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng --><dependency>    <groupId>io.qameta.allure</groupId>    <artifactId>allure-testng</artifactId>    <version>2.28.1</version></dependency>
+  
+  
+  <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->    
+  <dependency>    <groupId>com.github.javafaker</groupId>    <artifactId>javafaker</artifactId>    <version>1.0.2</version></dependency>
+     
+  <dependency>          <groupId>org.slf4j</groupId>          <artifactId>slf4j-api</artifactId>          <version>2.0.9</version>       </dependency>
+  
+  <dependency>    <groupId>org.apache.logging.log4j</groupId>    <artifactId>log4j-core</artifactId>    <version>2.24.0</version></dependency>
+  
+  
+  <dependency>    <groupId>com.jayway.jsonpath</groupId>    <artifactId>json-path</artifactId>    <version>2.5.0</version></dependency>
+  <dependency>    <groupId>com.google.code.gson</groupId>    <artifactId>gson</artifactId>    <version>2.10.1</version>    <scope>test</scope></dependency>
   <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -68,4 +95,62 @@
 </dependency>
 
   </dependencies>
+  
+  <build>
+    <pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${testNGSuite}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </pluginManagement>
+</build>
+
+<profiles>
+    <profile>
+        <id>LoginPage</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+            <property>
+                <name>environment</name>
+                <value>LoginPage</value>
+            </property>
+        </activation>
+        <properties>
+            <testNGSuite>LoginTest.xml</testNGSuite>
+        </properties>
+    </profile>
+    
+    <profile>
+        <id>HomePage</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+            <property>
+                <name>environment</name>
+                <value>HomePage</value>
+            </property>
+        </activation>
+        <properties>
+            <testNGSuite>HomePageTest.xml</testNGSuite>
+        </properties>
+    </profile>
+</profiles>
+  
+  
 </project>

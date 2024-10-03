@@ -2,6 +2,8 @@ package comp_CheckoutPage;
 
 import org.openqa.selenium.WebElement;
 
+import Utility.DataUtils;
+
 public class CheckoutPageComp extends CheckoutPageWebElement{
 
 
@@ -42,6 +44,26 @@ public class CheckoutPageComp extends CheckoutPageWebElement{
 		continueButton.click();
 	}
 
+	public void enterCheckoutInformationFromExcel() {
+		logger.debug("Entering checkout information from Excel.");
+		
+		String excelFilePath = "./Resources/";
+		String excelFilename = "checkouData.xlsx";
+		String sheetName = "loginData";
+		
+		DataUtils ExcelData = new DataUtils();
+		String firstName = ExcelData.getExcelData(excelFilePath, excelFilename, sheetName, 0, 0);
+		System.out.println("First name: " + firstName);
+		String lastName = ExcelData.getExcelData(excelFilePath, excelFilename, sheetName, 1, 0);
+		System.out.println("Last Name: " + lastName);
+        String postalCode = ExcelData.getExcelData(excelFilePath, excelFilename, sheetName, 2, 0);
+        System.out.println("Postal Code: " + postalCode);
+        
+		
+		enterCheckoutInformation(firstName, lastName, postalCode);
+		
+		
+	}
 
 
 }
