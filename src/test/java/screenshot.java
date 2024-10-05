@@ -57,7 +57,7 @@ public class screenshot {
 		    TakesScreenshot screenshot = (TakesScreenshot) driver;
 		    File source = screenshot.getScreenshotAs(OutputType.FILE);
 
-		    FileUtils.copyFile(source, new File("./ScreenShots/" + result.getName()+ ".png"));
+		    FileUtils.copyFile(source, new File("./ScreenShots/" + ".png"));
 		}
 	}
 }

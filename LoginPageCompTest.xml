@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/ENG HOSAM/IdeaProjects/swag-lab/src/test/java/test_loginpage/LoginPageCompTest.java">
+        <classes><class name="test_loginpage.LoginPageCompTest">
+            <methods><include name="CheckLoginPageOpened"/>
+                <include name="CheckFieldsAddToWebSite"/>
+                <include name="testLoginButtonFunctionality"/>
+                <include name="testSuccessfulLogin"/>
+<!--                <include name="testInvalidCredentials"/>-->
+<!--                <include name="testErrorMessageForMissingPassword"/>-->
+<!--                <include name="testErrorMessageForMissingUsername"/>-->
+<!--                <include name="checkCookiesAfterLogin"/>-->
+<!--                <include name="testAllUsers"/>-->
+<!--                <include name="CheckTheLoginWithExcelFile"/>-->
+<!--                <include name="CheckTheLoginWithcONFIGfILE"/>-->
+<!--                <include name="loginWithJSON"/>-->
+<!--                <include name="loginoginWithJavaFaker"/>-->
+</methods></class></classes></test></suite>

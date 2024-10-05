@@ -1,0 +1,64 @@
+pipeline {
+    agent any
+
+
+
+    stages {
+        stage('CheckOut') {
+                    steps {
+                        // Get some code from a GitHub repository
+                        git 'https://github.com/7osashraf/swag-lab'
+
+
+                    }
+
+        stage('Clean Projects') {
+                    steps {
+
+                        bat 'mvn clean'
+
+                    }
+
+        stage('Compile') {
+                    steps {
+
+                        bat 'mvn clean compile'
+
+                    }
+
+        stage('Package') {
+                    steps {
+
+                        bat 'mvn clean package'
+
+                    }
+
+        stage('Login Page Comp Test') {
+                    steps {
+                        script {
+                            try {
+                                bat """
+
+                                    mvn clean test -PLoginPage
+
+                                """
+
+                            }
+
+                        }
+                    }
+        }
+    }
+
+
+
+            post {
+                always {
+
+                    archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+                    junit '/target/surefire-reports/junitreports/TEST-*.xml'
+                    archiveArtifacts artifacts: 'ScreenShot/*.png', allowEmptyArchive: true
+
+                }
+            }
+}

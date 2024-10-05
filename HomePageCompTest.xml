@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/ENG HOSAM/IdeaProjects/swag-lab/src/test/java/test_homePage/HomePageCompTest.java">
+        <classes><class name="test_homePage.HomePageCompTest">
+            <methods><include name="checkPageTitle"/>
+<!--                <include name="checkIfAllItemsAreDisplayed"/>-->
+<!--                <include name="CheckIfClickOnAddToCartButton"/>-->
+<!--                <include name="CheckIfNumberBadgetAddedToCartIcon"/>-->
+<!--                <include name="CheckTextAndColorForRemoveButton"/>-->
+<!--                <include name="ClickOnTheRemoveButton"/>-->
+<!--                <include name="CheckIfSpecificThreeItemsAreAddedToCart"/>-->
+                <include name="CheckIfAllItemsAreAddedAndBadgeUpdates"/>
+<!--                <include name="CheckIfAllItemsAreRemovedAndBadgeUpdates"/>-->
+<!--                <include name="testIfProductSortAndValidation"/>-->
+            </methods></class></classes></test></suite>
