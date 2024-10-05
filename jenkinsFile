@@ -1,13 +1,7 @@
 pipeline {
     agent any
 
-    stages {
-        stage('CheckOut') {
-            steps {
-                // Get some code from a GitHub repository
-                git 'https://github.com/7osashraf/swag-lab.git'
-            }
-        }
+
 
         stage('Clean Projects') {
             steps {
