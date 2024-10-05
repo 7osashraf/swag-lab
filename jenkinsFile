@@ -7,9 +7,8 @@ pipeline {
         stage('CheckOut') {
                     steps {
                         // Get some code from a GitHub repository
-                        git 'https://github.com/7osashraf/swag-lab'
-
-
+                        git 'https://github.com/7osashraf/swag-lab.git'
+        }
                     }
 
         stage('Clean Projects') {
@@ -18,6 +17,7 @@ pipeline {
                         bat 'mvn clean'
 
                     }
+        }
 
         stage('Compile') {
                     steps {
@@ -25,6 +25,7 @@ pipeline {
                         bat 'mvn clean compile'
 
                     }
+        }
 
         stage('Package') {
                     steps {
@@ -32,6 +33,7 @@ pipeline {
                         bat 'mvn clean package'
 
                     }
+        }
 
         stage('Login Page Comp Test') {
                     steps {
