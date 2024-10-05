@@ -1,66 +1,52 @@
 pipeline {
     agent any
 
-
-
     stages {
         stage('CheckOut') {
-                    steps {
-                        // Get some code from a GitHub repository
-                        git 'https://github.com/7osashraf/swag-lab.git'
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/7osashraf/swag-lab.git'
+            }
         }
-                    }
 
         stage('Clean Projects') {
-                    steps {
-
-                        bat 'mvn clean'
-
-                    }
+            steps {
+                bat 'mvn clean'
+            }
         }
 
         stage('Compile') {
-                    steps {
-
-                        bat 'mvn clean compile'
-
-                    }
+            steps {
+                bat 'mvn clean compile'
+            }
         }
 
         stage('Package') {
-                    steps {
-
-                        bat 'mvn clean package'
-
-                    }
+            steps {
+                bat 'mvn clean package'
+            }
         }
 
         stage('Login Page Comp Test') {
-                    steps {
-                        script {
-                            try {
-                                bat """
-
-                                    mvn clean test -PLoginPage
-
-                                """
-
-                            }
-
-                        }
+            steps {
+                script {
+                    try {
+                        bat """
+                            mvn clean test -PLoginPage
+                        """
+                    } catch (Exception e) {
+                        echo "Test failed: ${e.message}"
                     }
+                }
+            }
         }
     }
 
-
-
-            post {
-                always {
-
-                    archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
-                    junit '/target/surefire-reports/junitreports/TEST-*.xml'
-                    archiveArtifacts artifacts: 'ScreenShot/*.png', allowEmptyArchive: true
-
-                }
-            }
+    post {
+        always {
+            archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: true
+            junit '/target/surefire-reports/junitreports/TEST-*.xml'
+            archiveArtifacts artifacts: 'ScreenShot/*.png', allowEmptyArchive: true
+        }
+    }
 }
