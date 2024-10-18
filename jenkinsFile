@@ -26,9 +26,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        bat """
-                            mvn clean test -PLoginPage
-                        """
+                        bat 'mvn clean test -PLoginPage'
                     } catch (Exception e) {
                         echo "Test failed: ${e.message}"
                     }
@@ -40,9 +38,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        bat """
-                            mvn clean test -PHomePage
-                            """
+                        bat 'mvn clean test -PHomePage'
                         } catch (Exception e) {
                             echo "Home Page Test failed: ${e.message}"
                         }
@@ -54,9 +50,7 @@ pipeline {
                 steps {
                     script {
                         try {
-                            bat """
-                                mvn clean test -PCheckoutComplete
-                                """
+                            bat 'mvn clean test -PCheckoutComplete'
                             } catch (Exception e) {
                             echo "Checkout Complete Page Test failed: ${e.message}"
                         }
