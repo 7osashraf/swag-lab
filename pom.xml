@@ -140,6 +140,20 @@
             <testNGSuite>HomePageCompTest.xml</testNGSuite>
         </properties>
     </profile>
+
+    <profile>
+        <id>CheckoutComplete</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+            <property>
+                <name>environment</name>
+                <value>CheckoutComplete</value>
+            </property>
+        </activation>
+        <properties>
+            <testNGSuite>CheckoutCompleteCompTest.xml</testNGSuite>
+        </properties>
+    </profile>
 </profiles>
   
   

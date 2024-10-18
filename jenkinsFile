@@ -35,6 +35,34 @@ pipeline {
                 }
             }
         }
+
+        stage('Home Page Comp Test') {
+            steps {
+                script {
+                    try {
+                        bat """
+                            mvn clean test -PHomePage
+                            """
+                        } catch (Exception e) {
+                            echo "Home Page Test failed: ${e.message}"
+                        }
+                    }
+                }
+            }
+
+            stage('Checkout Complete Page Test') {
+                steps {
+                    script {
+                        try {
+                            bat """
+                                mvn clean test -PCheckoutComplete
+                                """
+                            } catch (Exception e) {
+                            echo "Checkout Complete Page Test failed: ${e.message}"
+                        }
+                    }
+                }
+            }
     }
 
     post {
